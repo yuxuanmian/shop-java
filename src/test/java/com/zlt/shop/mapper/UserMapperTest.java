@@ -16,7 +16,10 @@ public class UserMapperTest {
 
     @Test
     public void testFindUserById() {
-        UserAcc uid = mapper.selectOne(new QueryWrapper<>(new UserAcc()).eq("uid", "1"));
+        UserAcc uid = mapper.selectOne(new QueryWrapper<>(new UserAcc())
+                .eq("username","tiansuo")
+                .eq("is_deleted","0")
+                .eq("is_banned","0"));
         System.out.println(uid);
     }
 

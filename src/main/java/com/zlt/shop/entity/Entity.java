@@ -24,5 +24,5 @@ public class Entity {
     /**
      * 修改人
      */
-    private String modifiedBu;
+    private String modifiedBy;
 }

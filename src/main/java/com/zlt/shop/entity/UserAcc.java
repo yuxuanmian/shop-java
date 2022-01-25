@@ -1,5 +1,6 @@
 package com.zlt.shop.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,11 +15,11 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
+@TableName("t_user")
 public class UserAcc extends Entity{
     private String uid;
     private String username;
     private String userPassword;
-    private String salt;
     /**
      * 是否被删除，即销号，软删除
      */
