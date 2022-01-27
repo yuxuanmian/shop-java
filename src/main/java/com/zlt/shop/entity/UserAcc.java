@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * 用户的账号信息
  */
@@ -16,7 +18,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Accessors(chain = true)
 @TableName("t_user")
-public class UserAcc extends Entity{
+public class UserAcc extends Entity implements Serializable {
     private String uid;
     private String username;
     private String userPassword;
