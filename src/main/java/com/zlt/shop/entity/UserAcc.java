@@ -35,4 +35,8 @@ public class UserAcc extends Entity implements Serializable {
      * 角色
      */
     private String role;
+    /**
+     * 盐值
+     */
+    private String salt;
 }
