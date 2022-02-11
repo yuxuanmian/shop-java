@@ -17,14 +17,29 @@ public class Starter {
 
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * 用户service
+     */
     @Autowired
-    IUserService userService;
+    private IUserService userService;
 
+    /**
+     * 分类service
+     */
     @Autowired
-    IClassifyService classifyService;
+    private IClassifyService classifyService;
 
+    /**
+     * 商品service
+     */
     @Autowired
-    IGoodService goodService;
+    private IGoodService goodService;
+
+    /**
+     * 全局用户
+     */
+    private UserAcc acc;
+
 
     public void init() {
 
@@ -56,7 +71,8 @@ public class Starter {
         String password = sc.next();
         //进行登录
         try {
-            userService.login(new UserAcc()
+
+            acc = userService.login(new UserAcc()
                     .setUsername(username)
                     .setUserPassword(password));
         } catch (Exception e) {
@@ -87,6 +103,11 @@ public class Starter {
             e.printStackTrace();
             register();
         }
+
+        //全局userAcc
+        acc.setRole("USER").setUsername(username);
+
+
         System.out.println("注册成功,请登录");
         login();
     }
@@ -100,9 +121,11 @@ public class Starter {
             System.out.println(i + "." + all.get(i).getName());
         }
 
-        System.out.println("要修改嘛?0否1是");
-        if (sc.nextInt() == 1) {
-            modifyClassify(all);
+        if (!"USER".equals(acc.getRole())) {
+            System.out.println("要修改嘛?0否1是");
+            if (sc.nextInt() == 1) {
+                modifyClassify(all);
+            }
         }
 
 
@@ -122,9 +145,11 @@ public class Starter {
             System.out.println(i + "." + good.getName() + "\t" + good.getDescription());
         }
 
-        System.out.println("要修改嘛?0否1是");
-        if(sc.nextInt()==1){
-            modifyGood(all);
+        if(!"USER".equals(acc.getRole())){
+            System.out.println("要修改嘛?0否1是");
+            if (sc.nextInt() == 1) {
+                modifyGood(all);
+            }
         }
         System.out.println("请选择商品");
 

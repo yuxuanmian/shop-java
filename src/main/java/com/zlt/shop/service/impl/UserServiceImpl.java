@@ -27,7 +27,7 @@ public class UserServiceImpl implements IUserService {
      *
      * @param accFromWeb 用户提交表单传来的数据封装
      */
-    public void login(UserAcc accFromWeb) {
+    public UserAcc login(UserAcc accFromWeb) {
         QueryWrapper<UserAcc> wrapper = new QueryWrapper<>();
         wrapper.eq(true, "username", accFromWeb.getUsername());
 
@@ -42,7 +42,7 @@ public class UserServiceImpl implements IUserService {
             throw new BadLoginException("用户名或密码错误");
         }
 
-
+        return userAcc;
     }
 
     /**
